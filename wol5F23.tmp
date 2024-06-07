@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://jlerjjc1m7mo"]
+
+[ext_resource type="Script" path="res://wolf.gd" id="1_eb3hf"]
+[ext_resource type="Texture2D" uid="uid://cxstlmjubgyi" path="res://assets/npc/enemy/wolf.png" id="1_lngi4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s05lg"]
+radius = 23.0217
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgnuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lngi4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emrve"]
+radius = 2016.89
+
+[node name="Wolf" type="CharacterBody2D"]
+script = ExtResource("1_eb3hf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 11)
+shape = SubResource("CircleShape2D_s05lg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.138829, 0.138829)
+sprite_frames = SubResource("SpriteFrames_tgnuf")
+animation = &"idle"
+
+[node name="DetectArea2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/DetectArea2D"]
+position = Vector2(0, -7.62939e-06)
+shape = SubResource("CircleShape2D_emrve")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 3)
+
+[connection signal="body_entered" from="AnimatedSprite2D/DetectArea2D" to="." method="_on_detect_area_2d_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite2D/DetectArea2D" to="." method="_on_detect_area_2d_body_exited"]

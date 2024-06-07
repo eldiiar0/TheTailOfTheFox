@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://p6q3nayyefk7"]
+
+[ext_resource type="Texture2D" uid="uid://etnlbgpvjyk7" path="res://assets/trees/pine2.png" id="1_bn4pk"]
+[ext_resource type="Texture2D" uid="uid://c7y4wmebpt2vg" path="res://anim/trees/pine-ss1.png" id="2_umtwi"]
+[ext_resource type="Texture2D" uid="uid://do2llsceivdk3" path="res://anim/trees/pine-ss2.png" id="3_goe3x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgibe"]
+height = 180.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0fuv"]
+radius = 16.0312
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tugpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bn4pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_umtwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_bn4pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_goe3x")
+}],
+"loop": true,
+"name": &"swing1",
+"speed": 5.0
+}]
+
+[node name="PineTree2" type="StaticBody2D"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fgibe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x0fuv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.996
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.78814e-07, -143)
+scale = Vector2(0.642525, 0.642525)
+sprite_frames = SubResource("SpriteFrames_tugpy")
+animation = &"swing1"
+autoplay = "default"
+frame_progress = 0.11973
+
+[connection signal="timeout" from="Timer" to="AnimatedSprite2D" method="_on_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1t64xgoeyjxc"]
+
+[ext_resource type="Texture2D" uid="uid://dray7i2o3kv7s" path="res://assets/trees/pine3.png" id="1_gyg15"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgibe"]
+height = 124.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0fuv"]
+radius = 11.7047
+
+[node name="PineTree3" type="StaticBody2D"]
+
+[node name="Pine3" type="Sprite2D" parent="."]
+position = Vector2(0, -137)
+scale = Vector2(0.588889, 0.588889)
+texture = ExtResource("1_gyg15")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fgibe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x0fuv")

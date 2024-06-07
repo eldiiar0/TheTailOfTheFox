@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdgnrvon80vge"]
+
+[ext_resource type="Texture2D" uid="uid://b37awcpfak35x" path="res://assets/trees/birch1.png" id="1_r7nom"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srhhd"]
+radius = 13.0
+
+[node name="BirchTree" type="StaticBody2D"]
+
+[node name="Birch1" type="Sprite2D" parent="."]
+position = Vector2(-2.99998, -92)
+scale = Vector2(0.426799, 0.426799)
+texture = ExtResource("1_r7nom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_srhhd")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4onaq0wwth8"]
+
+[ext_resource type="Texture2D" uid="uid://dxcwr1xqt3pqt" path="res://assets/trees/lpine2.png" id="1_geq5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0fuv"]
+radius = 16.0312
+
+[node name="LPineTree2" type="StaticBody2D"]
+
+[node name="Lpine2" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -291)
+scale = Vector2(0.52194, 0.52194)
+texture = ExtResource("1_geq5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_x0fuv")

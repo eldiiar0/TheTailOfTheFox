@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://jlerjjc1m7mo"]
+
+[ext_resource type="Script" path="res://scripts/wolf.gd" id="1_eb3hf"]
+[ext_resource type="Texture2D" uid="uid://cxstlmjubgyi" path="res://assets/npc/enemy/wolf.png" id="1_lngi4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s05lg"]
+radius = 44.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgnuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lngi4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emrve"]
+radius = 2016.89
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oiyq3"]
+radius = 248.982
+
+[node name="Wolf" type="CharacterBody2D"]
+script = ExtResource("1_eb3hf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-28, 11)
+shape = SubResource("CircleShape2D_s05lg")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-20, 13)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
+position = Vector2(14, -4)
+scale = Vector2(0.21692, 0.21692)
+sprite_frames = SubResource("SpriteFrames_tgnuf")
+animation = &"idle"
+
+[node name="DetectArea2D" type="Area2D" parent="Marker2D/AnimatedSprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/AnimatedSprite2D/DetectArea2D"]
+position = Vector2(0, -7.62939e-06)
+shape = SubResource("CircleShape2D_emrve")
+
+[node name="EnemyAtc" type="Area2D" parent="Marker2D/AnimatedSprite2D"]
+position = Vector2(-101.42, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/AnimatedSprite2D/EnemyAtc"]
+shape = SubResource("CircleShape2D_oiyq3")
+
+[node name="TakeDmgCd" type="Timer" parent="."]
+wait_time = 0.7
+
+[connection signal="body_entered" from="Marker2D/AnimatedSprite2D/DetectArea2D" to="." method="_on_detect_area_2d_body_entered"]
+[connection signal="body_exited" from="Marker2D/AnimatedSprite2D/DetectArea2D" to="." method="_on_detect_area_2d_body_exited"]
+[connection signal="body_entered" from="Marker2D/AnimatedSprite2D/EnemyAtc" to="." method="_on_enemy_atc_body_entered"]
+[connection signal="body_exited" from="Marker2D/AnimatedSprite2D/EnemyAtc" to="." method="_on_enemy_atc_body_exited"]
+[connection signal="timeout" from="TakeDmgCd" to="." method="_on_take_dmg_cd_timeout"]

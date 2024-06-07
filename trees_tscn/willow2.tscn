@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkfhwthwvfoyu"]
+
+[ext_resource type="Texture2D" uid="uid://sesolcxt4n2n" path="res://assets/trees/willow2.png" id="1_dtc3i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_22rto"]
+radius = 12.0
+height = 66.0
+
+[node name="willow2" type="StaticBody2D"]
+
+[node name="Willow2" type="Sprite2D" parent="."]
+position = Vector2(-3, -177)
+scale = Vector2(0.692483, 0.692483)
+texture = ExtResource("1_dtc3i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_22rto")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4rb11xw0xws2"]
+
+[ext_resource type="Texture2D" uid="uid://d1nvhgqmtnxsi" path="res://assets/trees/oak4.png" id="1_wdf8d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvh0t"]
+radius = 6.08276
+
+[node name="oak4" type="StaticBody2D"]
+
+[node name="Oak4" type="Sprite2D" parent="."]
+position = Vector2(-35, -109)
+scale = Vector2(0.555556, 0.555556)
+texture = ExtResource("1_wdf8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_wvh0t")

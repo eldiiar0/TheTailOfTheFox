@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://faitwipernw2"]
+
+[ext_resource type="Texture2D" uid="uid://c8tl1qj4o61d" path="res://assets/trees/loak1.png" id="1_bftj8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srhhd"]
+radius = 13.0
+
+[node name="LOakTree" type="StaticBody2D"]
+
+[node name="Loak1" type="Sprite2D" parent="."]
+position = Vector2(-2, -224)
+scale = Vector2(0.454121, 0.454121)
+texture = ExtResource("1_bftj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_srhhd")

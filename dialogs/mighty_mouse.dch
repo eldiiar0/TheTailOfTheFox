@@ -1,0 +1,41 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {
+"default_sound": {
+"mode": 0,
+"name": "default_sound",
+"pitch_base": 1.0,
+"pitch_variance": 0.0,
+"skip_characters": 0.0,
+"sound_path": "res://dialogs/typing3.mp3",
+"volume_base": 0.0,
+"volume_variance": 0.0
+}
+},
+"style": "mouse_talkbox"
+},
+"default_portrait": "default",
+"description": "",
+"display_name": "Mighty Mouse ",
+"mirror": true,
+"nicknames": ["Mouse leader"],
+"offset": Vector2(0, -30),
+"portraits": {
+"default": {
+"export_overrides": {
+"image": "\"res://assets/npc/friendly/mg_mouse.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "",
+"sound_mood": "default_sound"
+}
+},
+"scale": 0.35
+}

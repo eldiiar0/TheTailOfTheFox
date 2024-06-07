@@ -1,0 +1,42 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(0.0862745, 0.027451, 0.368627, 1),
+"custom_info": {
+"sound_mood_default": "Default_sound",
+"sound_moods": {
+"Default_sound": {
+"mode": 2,
+"name": "Default_sound",
+"pitch_base": 1.0,
+"pitch_variance": 0.0,
+"skip_characters": 0.0,
+"sound_path": "res://dialogs/typing2.mp3",
+"volume_base": 0.0,
+"volume_variance": 0.0
+}
+},
+"style": "crow_talkbox"
+},
+"default_portrait": "Default",
+"description": "",
+"display_name": "Crow",
+"mirror": true,
+"nicknames": [""],
+"offset": Vector2(0, -40),
+"portraits": {
+"Default": {
+"export_overrides": {
+"image": "\"res://assets/npc/friendly/Crow.png\""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "",
+"sound_mood": "Default_sound"
+}
+},
+"scale": 0.5
+}

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://2mwxvieduc4u"]
+
+[ext_resource type="Script" path="res://branches.gd" id="1_tl401"]
+[ext_resource type="Texture2D" uid="uid://d1lby1wkvkgqk" path="res://assets/items/branches3x.png" id="2_f104q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_da028"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f104q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex2jy"]
+radius = 25.7143
+height = 68.5714
+
+[node name="Branches" type="Node2D" groups=["Branches"]]
+position = Vector2(0, -4)
+scale = Vector2(1.4, 1.4)
+script = ExtResource("1_tl401")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_da028")
+
+[node name="pick_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_ex2jy")
+
+[connection signal="body_entered" from="pick_area" to="." method="_on_pick_area_body_entered"]
+[connection signal="body_exited" from="pick_area" to="." method="_on_pick_area_body_exited"]

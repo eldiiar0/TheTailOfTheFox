@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://ixssc2facfg1"]
+
+[ext_resource type="Script" path="res://scripts/fox.gd" id="1_npust"]
+[ext_resource type="Texture2D" uid="uid://drl24qurn4qc2" path="res://anim/fox/fox.png" id="2_mr8jv"]
+[ext_resource type="Texture2D" uid="uid://d18u56q0q5vol" path="res://assets/ui/HPunder.png" id="3_fwd78"]
+[ext_resource type="FontFile" uid="uid://digx02nt3hee4" path="res://assets/ui/fonts/Avara.otf" id="3_sq5cs"]
+[ext_resource type="Texture2D" uid="uid://od3ssmye0x63" path="res://assets/ui/PauseMenu.png" id="4_gca30"]
+[ext_resource type="Texture2D" uid="uid://d1lby1wkvkgqk" path="res://assets/items/branches3x.png" id="4_wmpda"]
+[ext_resource type="Texture2D" uid="uid://bou64esyr74ok" path="res://assets/ui/HPprogress.png" id="4_xamic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipbtl"]
+radius = 19.0263
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alnqo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mr8jv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mr8jv")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxmoy"]
+radius = 41.8001
+height = 132.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eonpk"]
+bg_color = Color(0.988235, 0.776471, 0.686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ug5"]
+bg_color = Color(1, 0.596078, 0.0941176, 1)
+corner_detail = 6
+
+[node name="Fox" type="CharacterBody2D"]
+position = Vector2(-4, 7)
+collision_layer = 3
+script = ExtResource("1_npust")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, -8)
+shape = SubResource("CircleShape2D_ipbtl")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, -8)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
+position = Vector2(-9, -4)
+scale = Vector2(0.454545, 0.454545)
+sprite_frames = SubResource("SpriteFrames_alnqo")
+animation = &"moving"
+
+[node name="FoxAtc" type="Area2D" parent="Marker2D/AnimatedSprite2D"]
+position = Vector2(28.6, 2.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/AnimatedSprite2D/FoxAtc"]
+position = Vector2(-8.80001, 6.60001)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_mxmoy")
+
+[node name="atc_cd" type="Timer" parent="."]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+offset = Vector2(15, 15)
+transform = Transform2D(1, 0, 0, 1, 15, 15)
+
+[node name="BranchesCol" type="Label" parent="CanvasLayer3"]
+visible = false
+self_modulate = Color(1, 0.596078, 0.0941176, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 40.0
+offset_right = -62.0
+offset_bottom = 62.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_sq5cs")
+theme_override_font_sizes/font_size = 18
+text = ": 0"
+metadata/_edit_group_ = true
+
+[node name="PauseMenu" type="Sprite2D" parent="CanvasLayer3/BranchesCol"]
+show_behind_parent = true
+position = Vector2(-30, 23)
+rotation = -1.57079
+scale = Vector2(0.0291295, 0.0437189)
+texture = ExtResource("4_gca30")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer3/BranchesCol"]
+position = Vector2(-45, 8)
+scale = Vector2(0.583333, 0.583333)
+texture = ExtResource("4_wmpda")
+
+[node name="Label" type="Label" parent="CanvasLayer3/BranchesCol"]
+self_modulate = Color(1, 0.596078, 0.0941176, 1)
+layout_mode = 0
+offset_left = -86.0
+offset_top = 30.0
+offset_right = 62.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("3_sq5cs")
+theme_override_font_sizes/font_size = 12
+text = "(Branches collected)"
+
+[node name="DashBar" type="ProgressBar" parent="CanvasLayer3"]
+offset_left = 5.0
+offset_top = 52.0
+offset_right = 205.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_eonpk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c2ug5")
+max_value = 3.0
+show_percentage = false
+
+[node name="TextureHPBar" type="TextureProgressBar" parent="CanvasLayer3"]
+offset_right = 209.0
+offset_bottom = 40.0
+texture_under = ExtResource("3_fwd78")
+texture_progress = ExtResource("4_xamic")
+texture_progress_offset = Vector2(5, 5)
+
+[connection signal="body_entered" from="Marker2D/AnimatedSprite2D/FoxAtc" to="." method="_on_fox_atc_body_entered"]
+[connection signal="body_exited" from="Marker2D/AnimatedSprite2D/FoxAtc" to="." method="_on_fox_atc_body_exited"]
+[connection signal="timeout" from="atc_cd" to="." method="_on_atc_cd_timeout"]
